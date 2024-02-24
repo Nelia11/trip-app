@@ -3,3 +3,6 @@
   font-size: 2rem;
 }
 
+.list {
+  overflow-x: auto;
+}
