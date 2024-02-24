@@ -1,0 +1,24 @@
+.card {
+  width: 20rem;
+  border: 2px solid rgb(240, 238, 238);
+  overflow: hidden;
+}
+
+.photo {
+  width: 20rem;
+  height: 18rem;
+  object-fit: cover;
+}
+
+.info {
+  padding-left: 2rem;
+}
+
+.city {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.dates {
+  color: gray;
+}
