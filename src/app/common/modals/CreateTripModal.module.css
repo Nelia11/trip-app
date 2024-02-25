@@ -1,0 +1,91 @@
+.container {
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+  width: 50rem;
+  margin: 5rem;
+}
+
+.heading {
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 2rem;
+}
+
+.wrapper {
+  padding: 5rem 2rem;
+  border-top: 1px solid rgb(227, 225, 225);
+  border-bottom: 1px solid rgb(227, 225, 225);
+}
+
+.rowWrap {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem 0;
+}
+
+.label {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.asterisk {
+  color: red;
+}
+
+.field {
+  height: 3rem;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+select:invalid,
+select option[value=''],
+.field::placeholder {
+  font-size: 1.2rem;
+  color: rgb(183, 179, 179);
+}
+
+.inputIconWrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.inputIconWrap i {
+  position: absolute;
+  right: 0.65rem;
+  top: 1rem;
+  filter: invert(76%) sepia(5%) saturate(45%) hue-rotate(344deg) brightness(99%)
+    contrast(79%);
+  transform: scale(1.2);
+  pointer-events: none;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  margin: 0 -1rem 0 0;
+  filter: invert(76%) sepia(5%) saturate(45%) hue-rotate(344deg) brightness(99%)
+    contrast(79%);
+}
+
+.buttonsWrapper {
+  display: flex;
+  justify-content: end;
+  padding: 2rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.btnCancel {
+  background-color: transparent;
+  color: gray;
+  border: 1px solid gray;
+}
+
+.btnSave {
+  margin-left: 1rem;
+  background-color: #0884f0;
+  color: white;
+  border: none;
+}
