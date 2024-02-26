@@ -4,5 +4,17 @@
 }
 
 .list {
+  display: flex;
   overflow-x: auto;
+}
+
+.btnAdd {
+  width: 20rem;
+  height: 18rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btnTxt {
+  font-weight: 600;
 }

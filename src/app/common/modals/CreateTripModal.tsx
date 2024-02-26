@@ -1,63 +1,173 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './CreateTripModal.module.css';
+import { trips } from '../../api/trips';
+import useModalStore from '../../../store/Modal.store';
+import useCreateTripStore from '../../../store/CreateTrip.store';
 
 const CreateTripModal = () => {
   const [inputTypeStartDate, setInputTypeStartDate] = useState('text');
   const [inputTypeEndDate, setInputTypeEndDate] = useState('text');
+  const [minStartDate, setMinStartDate] = useState('');
+  const [maxStartDate, setMaxStartDate] = useState('');
+  const [minEndDate, setMinEndDate] = useState('');
+  const [maxEndDate, setMaxEndDate] = useState('');
+
+  const { isModalOpen, setIsModalOpen } = useModalStore();
+  const {
+    selectedCity,
+    setSelectedCity,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    setSelectedCityImg,
+    addTrip,
+  } = useCreateTripStore();
+
+  const handleToggleModal = (isOpen: boolean) => {
+    if (!isOpen) {
+      setSelectedCity('');
+      setStartDate('');
+      setEndDate('');
+    }
+
+    setIsModalOpen(isOpen);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const selectedCityImage = trips.find((item) => item.city === selectedCity);
+    selectedCityImage && setSelectedCityImg(selectedCityImage?.photoUrl);
+    addTrip();
+    handleToggleModal(!isModalOpen);
+  };
+
+  const addDays = (initDate: Date, days: number) => {
+    let result = new Date(initDate);
+    result.setDate(result.getDate() + days);
+    return result;
+  };
+
+  const formatDate = (date: Date) => {
+    return date.toISOString().split('T')[0];
+  };
+
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = formatDate(today);
+    setMinStartDate(formattedDate);
+  }, []);
+
+  useEffect(() => {
+    if (minStartDate) {
+      const maxValidStartDate = addDays(new Date(minStartDate), 15);
+      const formattedDate = formatDate(maxValidStartDate);
+      setMaxStartDate(formattedDate);
+    }
+  }, [minStartDate]);
+
+  useEffect(() => {
+    setMinEndDate(startDate || minStartDate);
+  }, [startDate, maxStartDate]);
+
+  useEffect(() => {
+    if (startDate && minStartDate) {
+      const maxValidEndDate = addDays(new Date(startDate), 15);
+      const formattedDate = formatDate(maxValidEndDate);
+      setMaxEndDate(formattedDate);
+    } else {
+      setMaxEndDate(maxStartDate);
+    }
+  }, [startDate, minStartDate, maxStartDate]);
 
   return (
-    <div className={styles.container}>
-      <p className={styles.heading}>Create trip</p>
-      <form>
-        <div className={styles.wrapper}>
-          <div className={styles.rowWrap}>
-            <label className={styles.label}>
-              <span className={styles.asterisk}>* </span>City
-            </label>
-            <select className={styles.field} required>
-              <option value='' disabled selected>
-                Please select a city
-              </option>
-            </select>
-          </div>
-          <div className={styles.rowWrap}>
-            <label className={styles.label}>
-              <span className={styles.asterisk}>* </span>Start date
-            </label>
-            <div className={styles.inputIconWrap}>
-              <input
-                type={inputTypeStartDate}
-                onFocus={() => setInputTypeStartDate('date')}
-                onBlur={() => setInputTypeStartDate('text')}
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContent}>
+        <div className={styles.headingWrapper}>
+          <p className={styles.heading}>Create trip</p>
+          <button
+            className={styles.btnClose}
+            onClick={() => handleToggleModal(!isModalOpen)}
+          >
+            <i className='fa-solid fa-x'></i>
+          </button>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.wrapper}>
+            <div className={styles.rowWrap}>
+              <label className={styles.label}>
+                <span className={styles.asterisk}>* </span>City
+              </label>
+              <select
                 className={styles.field}
-                placeholder='Select date'
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.target.value)}
                 required
-              />
-              <i className='fa-regular fa-calendar' />
+              >
+                <option value=''>Please select a city</option>
+                {trips.map((trip) => (
+                  <option key={trip.id} value={trip.city}>
+                    {trip.city}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.rowWrap}>
+              <label className={styles.label}>
+                <span className={styles.asterisk}>* </span>Start date
+              </label>
+              <div className={styles.inputIconWrap}>
+                <input
+                  type={inputTypeStartDate}
+                  onFocus={() => setInputTypeStartDate('date')}
+                  onBlur={() => setInputTypeStartDate('text')}
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className={styles.field}
+                  placeholder='Select date'
+                  min={minStartDate}
+                  max={maxStartDate}
+                  required
+                />
+                {(inputTypeStartDate === 'text' || startDate === '') && (
+                  <i className='fa-regular fa-calendar' />
+                )}
+              </div>
+            </div>
+            <div className={styles.rowWrap}>
+              <label className={styles.label}>
+                <span className={styles.asterisk}>* </span>End date
+              </label>
+              <div className={styles.inputIconWrap}>
+                <input
+                  type={inputTypeEndDate}
+                  onFocus={() => setInputTypeEndDate('date')}
+                  onBlur={() => setInputTypeEndDate('text')}
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  className={styles.field}
+                  placeholder='Select date'
+                  min={minEndDate}
+                  max={maxEndDate}
+                  required
+                />
+                {(inputTypeEndDate === 'text' || endDate === '') && (
+                  <i className='fa-regular fa-calendar' />
+                )}
+              </div>
             </div>
           </div>
-          <div className={styles.rowWrap}>
-            <label className={styles.label}>
-              <span className={styles.asterisk}>* </span>End date
-            </label>
-            <div className={styles.inputIconWrap}>
-              <input
-                type={inputTypeEndDate}
-                onFocus={() => setInputTypeEndDate('date')}
-                onBlur={() => setInputTypeEndDate('text')}
-                className={styles.field}
-                placeholder='Select date'
-                required
-              />
-              <i className='fa-regular fa-calendar' />
-            </div>
+          <div className={styles.buttonsWrapper}>
+            <button
+              className={styles.btnCancel}
+              onClick={() => handleToggleModal(!isModalOpen)}
+            >
+              Cancel
+            </button>
+            <button className={styles.btnSave}>Save</button>
           </div>
-        </div>
-        <div className={styles.buttonsWrapper}>
-          <button className={styles.btnCancel}>Cancel</button>
-          <button className={styles.btnSave}>Save</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

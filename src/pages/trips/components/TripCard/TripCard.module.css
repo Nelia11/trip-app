@@ -14,6 +14,10 @@
   padding-left: 2rem;
 }
 
+.info > p {
+  margin: 1.5rem 0;
+}
+
 .city {
   font-weight: 600;
   font-size: 1.2rem;

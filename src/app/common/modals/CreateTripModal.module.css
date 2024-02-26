@@ -1,13 +1,43 @@
-.container {
-  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
+
+.modalContent {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
   width: 50rem;
-  margin: 5rem;
+  z-index: 100;
+}
+
+.headingWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.headingWrapper i {
+  filter: invert(76%) sepia(5%) saturate(45%) hue-rotate(344deg) brightness(99%)
+    contrast(79%);
 }
 
 .heading {
   font-size: 1.6rem;
   font-weight: 600;
-  padding: 2rem;
+}
+
+.btnClose {
+  background-color: transparent;
+  border: none;
 }
 
 .wrapper {
@@ -35,6 +65,7 @@
   height: 3rem;
   padding: 0 1rem;
   cursor: pointer;
+  border: 1px solid gray;
 }
 
 select:invalid,
@@ -61,7 +92,7 @@ select option[value=''],
 }
 
 input[type='date']::-webkit-calendar-picker-indicator {
-  margin: 0 -1rem 0 0;
+  margin-right: -0.8rem;
   filter: invert(76%) sepia(5%) saturate(45%) hue-rotate(344deg) brightness(99%)
     contrast(79%);
 }
@@ -88,4 +119,11 @@ button {
   background-color: #0884f0;
   color: white;
   border: none;
+}
+
+@media screen and (max-width: 600px) {
+  .modalContent {
+    width: 80%;
+    min-width: 21rem;
+  }
 }
