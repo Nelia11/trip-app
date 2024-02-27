@@ -50,11 +50,11 @@ const WeatherToday = () => {
   const { days, hours, minutes, seconds } = timeLeft;
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className={styles.loading}>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className={styles.error}>Error: {error}</div>;
   }
 
   return (
@@ -69,7 +69,7 @@ const WeatherToday = () => {
           <div className={styles.info}>
             <p>{day}</p>
             <div className={styles.temp}>
-              {data?.days[0]?.temp && Math.round(data?.days[0]?.temp)}
+              {Math.round(data?.days[0]?.temp)}
               <div className={styles.celsius}>
                 &deg;<span>C</span>
               </div>
