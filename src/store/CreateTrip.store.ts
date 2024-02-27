@@ -19,7 +19,14 @@ interface CreateTripState {
 }
 
 const useCreateTripStore = create<CreateTripState>((set) => ({
-  myTrips: [],
+  myTrips: [
+    {
+      city: 'Copenhagen',
+      photoUrl: 'https://trips-app.s3.eu-north-1.amazonaws.com/copenhagen.jpg',
+      startDate: '2024-03-01',
+      endDate: '2024-03-07',
+    },
+  ],
   selectedCity: '',
   setSelectedCity: (city) => set({ selectedCity: city }),
   startDate: '',
