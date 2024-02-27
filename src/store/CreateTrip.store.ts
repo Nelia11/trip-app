@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface CreateTripInterface {
+interface CreateTripState {
   myTrips: {
     city: string;
     startDate: string;
@@ -18,7 +18,7 @@ interface CreateTripInterface {
   addTrip: () => void;
 }
 
-const useCreateTripStore = create<CreateTripInterface>((set) => ({
+const useCreateTripStore = create<CreateTripState>((set) => ({
   myTrips: [],
   selectedCity: '',
   setSelectedCity: (city) => set({ selectedCity: city }),
