@@ -1,3 +1,9 @@
+.mainPage {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 .title {
   font-weight: 400;
   font-size: 2rem;

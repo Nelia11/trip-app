@@ -1,0 +1,72 @@
+.weatherToday {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: navy;
+  color: white;
+  padding: 3rem 0 1rem;
+  font-family: sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30rem;
+}
+
+.forecast {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 5rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.info p,
+.temp {
+  margin: 0.5rem;
+}
+
+.temp {
+  display: flex;
+}
+
+.celsius {
+  font-size: 1.3rem;
+}
+
+.celsius span {
+  margin-left: 0.2rem;
+}
+
+.city {
+  font-family: Courier New, sans-serif;
+}
+
+.counter {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.fieldWrap {
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fieldWrap p:first-child {
+  font-size: 2rem;
+  font-weight: 800;
+}
