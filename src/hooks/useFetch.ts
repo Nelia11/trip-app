@@ -6,6 +6,8 @@ const useFetch = (url: string) => {
     days: {
       datetime: string;
       temp: number;
+      tempmax: number;
+      tempmin: number;
       icon: 'string';
     }[];
   }

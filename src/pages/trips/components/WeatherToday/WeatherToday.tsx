@@ -5,37 +5,21 @@ import styles from './WeatherToday.module.css';
 import calculateTimeLeft from '../../../../helpers/calculateTimeLeft';
 import useFetch from '../../../../hooks/useFetch';
 import { baseURL } from '../../../../constants/baseURL';
+import { weekDays } from '../../../../constants/weekDays';
+import { getDay } from '../../../../helpers/getDay';
 
 const WeatherToday = () => {
   const apiKey = import.meta.env.VITE_APP_WEATHER_API_KEY;
 
   const { activeCity, activeStartDate } = useActiveTripStore();
 
-  const [day, setDay] = useState('');
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(activeStartDate));
 
   const { data, isLoading, error } = useFetch(
     `${baseURL}/${activeCity}/today?unitGroup=metric&include=days&key=${apiKey}&iconSet=icons2&contentType=json`
   );
 
-  const weekdays = useMemo(
-    () => [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-    ],
-    []
-  );
-
-  useEffect(() => {
-    const forecastDate = new Date(data?.days[0]?.datetime);
-    const day = forecastDate.getDay();
-    setDay(weekdays[day]);
-  }, [data, weekdays]);
+  const weekdays = useMemo(() => weekDays, []);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -67,7 +51,7 @@ const WeatherToday = () => {
             alt='weather-icon'
           />
           <div className={styles.info}>
-            <p>{day}</p>
+            <p>{getDay(data?.days[0]?.datetime, weekdays)}</p>
             <div className={styles.temp}>
               {Math.round(data?.days[0]?.temp)}
               <div className={styles.celsius}>

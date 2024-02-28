@@ -3,6 +3,8 @@ import styles from './CreateTripModal.module.css';
 import { trips } from '../../api/trips';
 import useModalStore from '../../../store/Modal.store';
 import useCreateTripStore from '../../../store/CreateTrip.store';
+import { addDays } from '../../../helpers/addDays';
+import { splitISOStringDate } from '../../../helpers/splitISOStringDate';
 
 const CreateTripModal = () => {
   const [inputTypeStartDate, setInputTypeStartDate] = useState('text');
@@ -42,26 +44,16 @@ const CreateTripModal = () => {
     handleToggleModal(!isModalOpen);
   };
 
-  const addDays = (initDate: Date, days: number) => {
-    let result = new Date(initDate);
-    result.setDate(result.getDate() + days);
-    return result;
-  };
-
-  const formatDate = (date: Date) => {
-    return date.toISOString().split('T')[0];
-  };
-
   useEffect(() => {
     const today = new Date();
-    const formattedDate = formatDate(today);
+    const formattedDate = splitISOStringDate(today);
     setMinStartDate(formattedDate);
   }, []);
 
   useEffect(() => {
     if (minStartDate) {
       const maxValidStartDate = addDays(new Date(minStartDate), 15);
-      const formattedDate = formatDate(maxValidStartDate);
+      const formattedDate = splitISOStringDate(maxValidStartDate);
       setMaxStartDate(formattedDate);
     }
   }, [minStartDate]);
@@ -73,7 +65,7 @@ const CreateTripModal = () => {
   useEffect(() => {
     if (startDate && minStartDate) {
       const maxValidEndDate = addDays(new Date(startDate), 15);
-      const formattedDate = formatDate(maxValidEndDate);
+      const formattedDate = splitISOStringDate(maxValidEndDate);
       setMaxEndDate(formattedDate);
     } else {
       setMaxEndDate(maxStartDate);

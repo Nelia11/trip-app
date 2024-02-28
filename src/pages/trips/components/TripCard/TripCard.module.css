@@ -1,7 +1,5 @@
 .card {
-  width: 20rem;
-  border: 2px solid rgb(240, 238, 238);
-  overflow: hidden;
+  width: 22rem;
   position: relative;
 }
 
@@ -16,6 +14,7 @@
   width: 100%;
   height: 100%;
   cursor: pointer;
+  border: 2px solid rgb(240, 238, 238);
 }
 
 .card input[type='checkbox']:checked + label {
@@ -23,8 +22,8 @@
 }
 
 .photo {
-  width: 20rem;
-  height: 18rem;
+  width: 22rem;
+  height: 24rem;
   object-fit: cover;
 }
 
