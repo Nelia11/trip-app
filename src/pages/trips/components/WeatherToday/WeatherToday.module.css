@@ -2,18 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: navy;
   color: white;
-  padding: 3rem 0 1rem;
   font-family: sans-serif;
+  margin-left: 3rem;
 }
 
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30rem;
+  width: 40rem;
 }
 
 .forecast {
@@ -71,11 +71,12 @@
   font-weight: 800;
 }
 
-.loading, .error {
+.loading,
+.error {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30rem;
+  width: 40rem;
   font-size: 3rem;
   font-weight: 600;
 }

@@ -2,6 +2,12 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  max-width: 200rem;
+  margin: auto auto;
+}
+
+.leftSide {
+  padding: 3rem;
 }
 
 .title {
@@ -11,12 +17,28 @@
 
 .list {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.horyzontalScroll {
+  display: flex;
+  flex-wrap: nowrap;
   overflow-x: auto;
+  max-width: 97rem;
+  margin: 0 3rem 3rem 0;
+}
+
+.horyzontalScroll > * {
+  margin: 0 3rem 1rem 0;
+}
+
+.horyzontalScroll > :last-child {
+  margin-right: 0;
 }
 
 .btnAdd {
-  width: 20rem;
-  height: 18rem;
+  width: 22rem;
+  height: 24rem;
   border: none;
   cursor: pointer;
 }
@@ -27,20 +49,21 @@
 
 .group {
   display: flex;
-  line-height: 28px;
+  line-height: 2.8rem;
   align-items: center;
   position: relative;
-  max-width: 190px;
+  max-width: 20rem;
+  margin: 3rem 0;
 }
 
 .searchInput {
   width: 100%;
-  height: 40px;
-  line-height: 28px;
+  height: 4rem;
+  line-height: 2.8rem;
   padding: 0 1rem;
   padding-left: 2.5rem;
   border: 2px solid transparent;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   outline: none;
   background-color: #f3f3f4;
   color: #0d0c22;
@@ -66,4 +89,22 @@
   width: 30rem;
   font-size: 3rem;
   font-weight: 600;
+}
+
+@media screen and (max-width: 1024px) {
+  .horyzontalScroll {
+    max-width: 72rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .horyzontalScroll {
+    max-width: 47rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .horyzontalScroll {
+    max-width: 22rem;
+  }
 }
