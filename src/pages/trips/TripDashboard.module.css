@@ -24,7 +24,7 @@
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  max-width: 97rem;
+  max-width: 72rem;
   margin: 0 3rem 3rem 0;
 }
 
@@ -47,13 +47,22 @@
   font-weight: 600;
 }
 
+.filters {
+  display: flex;
+  padding: 3rem 0;
+}
+
+.filters select {
+  margin-left: 1rem;
+  border: none;
+}
+
 .group {
   display: flex;
   line-height: 2.8rem;
   align-items: center;
   position: relative;
   max-width: 20rem;
-  margin: 3rem 0;
 }
 
 .searchInput {
@@ -89,12 +98,6 @@
   width: 30rem;
   font-size: 3rem;
   font-weight: 600;
-}
-
-@media screen and (max-width: 1024px) {
-  .horyzontalScroll {
-    max-width: 72rem;
-  }
 }
 
 @media screen and (max-width: 768px) {

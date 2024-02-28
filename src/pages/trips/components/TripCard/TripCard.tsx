@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styles from './TripCard.module.css';
 import useActiveTripStore from '../../../../store/ActiveTrip.store';
+import { formatDate } from '../../../../helpers/formatDate';
 
 interface TripCardProps {
   photoUrl: string;
@@ -52,7 +53,7 @@ const TripCard: FC<TripCardProps> = ({
       <div className={styles.info}>
         <p className={styles.city}>{city}</p>
         <p className={styles.dates}>
-          {startDate} - {endDate}
+          {formatDate(startDate)} - {formatDate(endDate)}
         </p>
       </div>
     </div>

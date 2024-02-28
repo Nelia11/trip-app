@@ -31,7 +31,7 @@ const TripDashboard = () => {
   };
 
   useEffect(() => {
-    const filterTrips = myTrips.filter((trip) => {
+    const filterTrips = [...myTrips].filter((trip) => {
       if (!searchInput) {
         return trip;
       } else {
@@ -47,6 +47,29 @@ const TripDashboard = () => {
     }
   }, []);
 
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const sortValue = e.target.value;
+    let sortedTrips = [...myTrips];
+
+    if (sortValue === 'asc') {
+      sortedTrips.sort(
+        (a, b) =>
+          new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+      );
+    } else if (sortValue === 'desc') {
+      sortedTrips.sort(
+        (a, b) =>
+          new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+      );
+    }
+
+    if (sortValue === '') {
+      setTrips(trips);
+    } else {
+      setTrips(sortedTrips);
+    }
+  };
+
   return (
     <div className={styles.mainPage}>
       <div className={styles.leftSide}>
@@ -54,15 +77,22 @@ const TripDashboard = () => {
         <h1 className={styles.title}>
           Weater <strong>Forecast</strong>
         </h1>
-        <div className={styles.group}>
-          <i className='fa-solid fa-magnifying-glass'></i>
-          <input
-            type='text'
-            value={searchInput}
-            onChange={handleInputChange}
-            placeholder='Search your trip'
-            className={styles.searchInput}
-          />
+        <div className={styles.filters}>
+          <div className={styles.group}>
+            <i className='fa-solid fa-magnifying-glass'></i>
+            <input
+              type='text'
+              value={searchInput}
+              onChange={handleInputChange}
+              placeholder='Search your trip'
+              className={styles.searchInput}
+            />
+          </div>
+          <select onChange={handleSortChange}>
+            <option value=''>Sort by date</option>
+            <option value='asc'>ASC</option>
+            <option value='desc'>DESC</option>
+          </select>
         </div>
         <div className={styles.list}>
           <div className={styles.horyzontalScroll}>

@@ -4,8 +4,9 @@
 }
 
 .weatherForecast {
-  display: flex;
-  max-width: 50rem;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  max-width: 72rem;
 }
 
 .weatherDay {
@@ -57,5 +58,17 @@
   .weatherForecast {
     display: flex;
     flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .weatherForecast {
+    max-width: 47rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .weatherForecast {
+    max-width: 22rem;
   }
 }
