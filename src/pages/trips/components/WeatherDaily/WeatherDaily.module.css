@@ -1,0 +1,61 @@
+.title {
+  font-size: 1.6rem;
+  margin: 2rem 1rem;
+}
+
+.weatherForecast {
+  display: flex;
+  max-width: 50rem;
+}
+
+.weatherDay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.4rem;
+}
+
+.weatherDay img {
+  width: 5rem;
+  margin: 1.5rem 0;
+}
+
+.day {
+  color: gray;
+  margin: 1rem;
+}
+
+.maxMinTemp {
+  display: flex;
+  align-items: center;
+}
+
+.temp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.2rem;
+}
+
+.degree {
+  font-size: 1.3rem;
+  margin-left: 0.1rem;
+}
+
+.loading,
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30rem;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 748px) {
+  .weatherForecast {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

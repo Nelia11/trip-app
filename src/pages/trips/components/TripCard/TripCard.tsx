@@ -7,6 +7,7 @@ interface TripCardProps {
   city: string;
   startDate: string;
   endDate: string;
+  tripId: string;
 }
 
 const TripCard: FC<TripCardProps> = ({
@@ -14,16 +15,24 @@ const TripCard: FC<TripCardProps> = ({
   city,
   startDate,
   endDate,
+  tripId,
 }) => {
-  const { activeCity, setActiveCity, setActiveStartDay, setActiveEndDay } =
-    useActiveTripStore();
+  const {
+    activeTripId,
+    setActiveTripId,
+    setActiveCity,
+    setActiveStartDay,
+    setActiveEndDay,
+  } = useActiveTripStore();
 
   const handleChange = () => {
-    if (city !== activeCity) {
+    if (tripId !== activeTripId) {
+      setActiveTripId(tripId);
       setActiveCity(city);
       setActiveStartDay(startDate);
       setActiveEndDay(endDate);
     } else {
+      setActiveTripId('');
       setActiveCity('');
       setActiveStartDay('');
       setActiveEndDay('');
@@ -34,11 +43,11 @@ const TripCard: FC<TripCardProps> = ({
     <div className={styles.card}>
       <input
         type='checkbox'
-        id={city}
-        checked={city === activeCity}
+        id={tripId}
+        checked={tripId === activeTripId}
         onChange={handleChange}
       />
-      <label htmlFor={city} />
+      <label htmlFor={tripId} />
       <img className={styles.photo} src={photoUrl} alt='city-image' />
       <div className={styles.info}>
         <p className={styles.city}>{city}</p>
