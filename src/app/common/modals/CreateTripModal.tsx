@@ -41,6 +41,10 @@ const CreateTripModal = () => {
     const selectedCityImage = trips.find((item) => item.city === selectedCity);
     selectedCityImage && setSelectedCityImg(selectedCityImage?.photoUrl);
     addTrip();
+    sessionStorage.setItem(
+      'myTrips',
+      JSON.stringify(useCreateTripStore.getState().myTrips)
+    );
     handleToggleModal(!isModalOpen);
   };
 
