@@ -64,19 +64,19 @@ const WeatherToday = () => {
       </div>
       <div className={styles.counter}>
         <div className={styles.fieldWrap}>
-          <p>{days}</p>
+          <p>{days ?? 0}</p>
           <p>{days === 1 ? 'DAY' : 'DAYS'}</p>
         </div>
         <div className={styles.fieldWrap}>
-          <p>{hours}</p>
+          <p>{hours ?? 0}</p>
           <p>{hours === 1 ? 'HOUR' : 'HOURS'}</p>
         </div>
         <div className={styles.fieldWrap}>
-          <p>{minutes}</p>
+          <p>{minutes ?? 0}</p>
           <p>{minutes === 1 ? 'MINUTE' : 'MINUTES'}</p>
         </div>
         <div className={styles.fieldWrap}>
-          <p>{seconds}</p>
+          <p>{seconds ?? 0}</p>
           <p>{seconds === 1 ? 'SECOND' : 'SECONDS'}</p>
         </div>
       </div>
