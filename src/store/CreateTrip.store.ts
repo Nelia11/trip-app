@@ -1,14 +1,16 @@
 import { create } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
 
+export interface Trip {
+  tripId: string;
+  city: string;
+  startDate: string;
+  endDate: string;
+  photoUrl: string;
+}
+
 interface CreateTripState {
-  myTrips: {
-    tripId: string;
-    city: string;
-    startDate: string;
-    endDate: string;
-    photoUrl: string;
-  }[];
+  myTrips: Trip[];
   tripId: string;
   selectedCity: string;
   setSelectedCity: (city: string) => void;
@@ -19,6 +21,7 @@ interface CreateTripState {
   selectedCityImg: string;
   setSelectedCityImg: (url: string) => void;
   addTrip: () => void;
+  setMyTrips: (trips: Trip[]) => void;
 }
 
 const useCreateTripStore = create<CreateTripState>((set) => ({
@@ -53,6 +56,7 @@ const useCreateTripStore = create<CreateTripState>((set) => ({
         },
       ],
     })),
+  setMyTrips: (trips) => set({ myTrips: trips }),
 }));
 
 export default useCreateTripStore;

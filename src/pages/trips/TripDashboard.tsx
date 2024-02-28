@@ -2,17 +2,20 @@ import styles from './TripDashboard.module.css';
 import TripCard from './components/TripCard/TripCard';
 import useModalStore from '../../store/Modal.store';
 import CreateTripModal from '../../app/common/modals/CreateTripModal';
-import useCreateTripStore from '../../store/CreateTrip.store';
+import useCreateTripStore, { Trip } from '../../store/CreateTrip.store';
 import WeatherToday from './components/WeatherToday/WeatherToday';
 import useActiveTripStore from '../../store/ActiveTrip.store';
 import WeatherDaily from './components/WeatherDaily/WeatherDaily';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const TripDashboard = () => {
+  const storedTrips = sessionStorage.getItem('myTrips');
+
   const { isModalOpen, setIsModalOpen } = useModalStore();
-  const { myTrips } = useCreateTripStore();
+  const { myTrips, setMyTrips } = useCreateTripStore();
   const { activeCity, setActiveCity, setActiveTripId } = useActiveTripStore();
-  const [searchInput, setSeachInput] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+  const [trips, setTrips] = useState<Trip[]>(myTrips);
 
   const handleClick = () => {
     setIsModalOpen(!isModalOpen);
@@ -22,18 +25,27 @@ const TripDashboard = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const lowerCase = e.target.value.toLowerCase();
-    setSeachInput(lowerCase);
+    setSearchInput(lowerCase);
     setActiveCity('');
     setActiveTripId('');
   };
 
-  const filteredTrips = myTrips.filter((trip) => {
-    if (!searchInput) {
-      return trip;
-    } else {
-      return trip.city.toLowerCase().startsWith(searchInput);
+  useEffect(() => {
+    const filterTrips = myTrips.filter((trip) => {
+      if (!searchInput) {
+        return trip;
+      } else {
+        return trip.city.toLowerCase().startsWith(searchInput);
+      }
+    });
+    setTrips(filterTrips);
+  }, [myTrips, searchInput]);
+
+  useEffect(() => {
+    if (storedTrips) {
+      setMyTrips(JSON.parse(storedTrips));
     }
-  });
+  }, []);
 
   return (
     <div className={styles.mainPage}>
@@ -54,10 +66,10 @@ const TripDashboard = () => {
         </div>
         <div className={styles.list}>
           <div className={styles.horyzontalScroll}>
-            {filteredTrips.length === 0 ? (
+            {trips.length === 0 ? (
               <div className={styles.noTrip}>Trip not found</div>
             ) : (
-              filteredTrips.map((trip) => (
+              trips.map((trip) => (
                 <TripCard
                   key={trip.tripId}
                   tripId={trip.tripId}

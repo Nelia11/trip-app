@@ -1,17 +1,17 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-const useFetch = (url: string) => {
-  interface WeatherData {
-    days: {
-      datetime: string;
-      temp: number;
-      tempmax: number;
-      tempmin: number;
-      icon: 'string';
-    }[];
-  }
+interface WeatherData {
+  days: {
+    datetime: string;
+    temp: number;
+    tempmax: number;
+    tempmin: number;
+    icon: 'string';
+  }[];
+}
 
+const useFetch = (url: string) => {
   const [data, setData] = useState<WeatherData>({ days: [] });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<null | string>(null);
