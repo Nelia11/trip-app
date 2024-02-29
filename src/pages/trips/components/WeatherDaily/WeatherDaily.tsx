@@ -8,10 +8,9 @@ import { weekDays } from '../../../../constants/weekDays';
 import { getDay } from '../../../../helpers/getDay';
 
 const WeatherDaily = () => {
-  const apiKey = import.meta.env.VITE_APP_WEATHER_API_KEY;
   const { activeCity, activeStartDate, activeEndDate } = useActiveTripStore();
   const { data, isLoading, error } = useFetch(
-    `${baseURL}/${activeCity}/${activeStartDate}/${activeEndDate}?unitGroup=metric&include=days&key=${apiKey}&iconSet=icons2&contentType=json`
+    `${baseURL}/${activeCity}/${activeStartDate}/${activeEndDate}?unitGroup=metric&include=days&key=U8AGVEUT25KSVKCPGRGZYBYHT&iconSet=icons2&contentType=json`
   );
 
   const weekdays = useMemo(() => weekDays, []);

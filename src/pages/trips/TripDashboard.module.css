@@ -1,7 +1,6 @@
 .mainPage {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   max-width: 200rem;
   margin: auto auto;
 }
@@ -23,7 +22,6 @@
 .list {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .horyzontalScroll {
@@ -118,6 +116,12 @@
 
 .scrollBtnRight {
   margin-right: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  .horyzontalScroll {
+    max-width: 60rem;
+  }
 }
 
 @media screen and (max-width: 768px) {

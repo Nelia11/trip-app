@@ -9,14 +9,12 @@ import { weekDays } from '../../../../constants/weekDays';
 import { getDay } from '../../../../helpers/getDay';
 
 const WeatherToday = () => {
-  const apiKey = import.meta.env.VITE_APP_WEATHER_API_KEY;
-
   const { activeCity, activeStartDate } = useActiveTripStore();
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(activeStartDate));
 
   const { data, isLoading, error } = useFetch(
-    `${baseURL}/${activeCity}/today?unitGroup=metric&include=days&key=${apiKey}&iconSet=icons2&contentType=json`
+    `${baseURL}/${activeCity}/today?unitGroup=metric&include=days&key=U8AGVEUT25KSVKCPGRGZYBYHT&iconSet=icons2&contentType=json`
   );
 
   const weekdays = useMemo(() => weekDays, []);

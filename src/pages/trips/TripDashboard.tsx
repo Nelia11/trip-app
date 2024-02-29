@@ -1,14 +1,18 @@
 import styles from './TripDashboard.module.css';
 import TripCard from './components/TripCard/TripCard';
 import useModalStore from '../../store/Modal.store';
-import CreateTripModal from '../../app/common/modals/CreateTripModal';
+import CreateTripModal from '../../app/common/modals/CreateTripModal/CreateTripModal';
 import useCreateTripStore, { Trip } from '../../store/CreateTrip.store';
 import WeatherToday from './components/WeatherToday/WeatherToday';
 import useActiveTripStore from '../../store/ActiveTrip.store';
 import WeatherDaily from './components/WeatherDaily/WeatherDaily';
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { FC, RefObject, useEffect, useRef, useState } from 'react';
+import GoogleButton from '../../app/common/buttons/GoogleButton/GoogleButton';
 
-const TripDashboard = () => {
+interface TripDashboardProps {
+  logOut: () => void;
+}
+const TripDashboard: FC<TripDashboardProps> = ({ logOut }) => {
   const storedTrips = sessionStorage.getItem('myTrips');
 
   const { isModalOpen, setIsModalOpen } = useModalStore();
@@ -94,6 +98,7 @@ const TripDashboard = () => {
     <div className={styles.mainPage}>
       <div className={styles.leftSide}>
         {isModalOpen && <CreateTripModal />}
+        <GoogleButton text='Log out' handleClick={logOut} />
         <h1 className={styles.title}>
           Weater <strong>Forecast</strong>
         </h1>
