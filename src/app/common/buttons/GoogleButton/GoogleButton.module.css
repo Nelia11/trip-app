@@ -1,0 +1,27 @@
+.googleBtn {
+  border-radius: 2rem;
+  box-sizing: border-box;
+  padding: 1rem 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lucida Sans', sans-serif;
+  font-size: 1.1rem;
+  gap: 5rem;
+  width: 20rem;
+  height: 4rem;
+  margin: 0 0 3rem 0;
+  background-color: white;
+}
+
+.googleBtn {
+  border: 2px solid #747474;
+}
+
+.googleBtn img {
+  height: 1.8rem;
+  margin-bottom: 0.1rem;
+}
