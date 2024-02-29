@@ -15,8 +15,14 @@
   font-size: 2rem;
 }
 
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .list {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -25,7 +31,7 @@
   flex-wrap: nowrap;
   overflow-x: auto;
   max-width: 72rem;
-  margin: 0 3rem 3rem 0;
+  margin: 0 1rem 3rem;
 }
 
 .horyzontalScroll > * {
@@ -34,6 +40,16 @@
 
 .horyzontalScroll > :last-child {
   margin-right: 0;
+}
+
+.horyzontalScroll::-webkit-scrollbar {
+  width: 2rem;
+  background-color: lightgray;
+}
+
+.horyzontalScroll::-webkit-scrollbar:hover {
+  width: 2rem;
+  background-color: gray;
 }
 
 .btnAdd {
@@ -98,6 +114,10 @@
   width: 30rem;
   font-size: 3rem;
   font-weight: 600;
+}
+
+.scrollBtnRight {
+  margin-right: 1rem;
 }
 
 @media screen and (max-width: 768px) {

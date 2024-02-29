@@ -6,7 +6,7 @@ import useCreateTripStore, { Trip } from '../../store/CreateTrip.store';
 import WeatherToday from './components/WeatherToday/WeatherToday';
 import useActiveTripStore from '../../store/ActiveTrip.store';
 import WeatherDaily from './components/WeatherDaily/WeatherDaily';
-import { useEffect, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 
 const TripDashboard = () => {
   const storedTrips = sessionStorage.getItem('myTrips');
@@ -16,6 +16,26 @@ const TripDashboard = () => {
   const { activeCity, setActiveCity, setActiveTripId } = useActiveTripStore();
   const [searchInput, setSearchInput] = useState('');
   const [trips, setTrips] = useState<Trip[]>(myTrips);
+
+  const scrollRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: -100,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: 100,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   const handleClick = () => {
     setIsModalOpen(!isModalOpen);
@@ -94,21 +114,33 @@ const TripDashboard = () => {
             <option value='desc'>DESC</option>
           </select>
         </div>
-        <div className={styles.list}>
-          <div className={styles.horyzontalScroll}>
-            {trips.length === 0 ? (
-              <div className={styles.noTrip}>Trip not found</div>
-            ) : (
-              trips.map((trip) => (
-                <TripCard
-                  key={trip.tripId}
-                  tripId={trip.tripId}
-                  photoUrl={trip.photoUrl}
-                  city={trip.city}
-                  startDate={trip.startDate}
-                  endDate={trip.endDate}
-                />
-              ))
+        <div className={styles.wrapper}>
+          <div className={styles.list}>
+            {trips.length > 1 && (
+              <button className={styles.scrollBtnLeft} onClick={scrollLeft}>
+                <i className='fa-solid fa-chevron-left'></i>
+              </button>
+            )}
+            <div className={styles.horyzontalScroll} ref={scrollRef}>
+              {trips.length === 0 ? (
+                <div className={styles.noTrip}>Trip not found</div>
+              ) : (
+                trips.map((trip) => (
+                  <TripCard
+                    key={trip.tripId}
+                    tripId={trip.tripId}
+                    photoUrl={trip.photoUrl}
+                    city={trip.city}
+                    startDate={trip.startDate}
+                    endDate={trip.endDate}
+                  />
+                ))
+              )}
+            </div>
+            {trips.length > 1 && (
+              <button className={styles.scrollBtnRight} onClick={scrollRight}>
+                <i className='fa-solid fa-chevron-right'></i>
+              </button>
             )}
           </div>
           <button className={styles.btnAdd} onClick={() => handleClick()}>
