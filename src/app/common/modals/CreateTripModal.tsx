@@ -88,13 +88,14 @@ const CreateTripModal = () => {
             <i className='fa-solid fa-x'></i>
           </button>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} name='add-trip'>
           <div className={styles.wrapper}>
             <div className={styles.rowWrap}>
-              <label className={styles.label}>
+              <label className={styles.label} htmlFor='city'>
                 <span className={styles.asterisk}>* </span>City
               </label>
               <select
+                id='city'
                 className={styles.field}
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
@@ -109,11 +110,12 @@ const CreateTripModal = () => {
               </select>
             </div>
             <div className={styles.rowWrap}>
-              <label className={styles.label}>
+              <label className={styles.label} htmlFor='start-date'>
                 <span className={styles.asterisk}>* </span>Start date
               </label>
               <div className={styles.inputIconWrap}>
                 <input
+                  id='start-date'
                   type={inputTypeStartDate}
                   onFocus={() => setInputTypeStartDate('date')}
                   onBlur={() => setInputTypeStartDate('text')}
@@ -131,11 +133,12 @@ const CreateTripModal = () => {
               </div>
             </div>
             <div className={styles.rowWrap}>
-              <label className={styles.label}>
+              <label className={styles.label} htmlFor='end-date'>
                 <span className={styles.asterisk}>* </span>End date
               </label>
               <div className={styles.inputIconWrap}>
                 <input
+                  id='end-date'
                   type={inputTypeEndDate}
                   onFocus={() => setInputTypeEndDate('date')}
                   onBlur={() => setInputTypeEndDate('text')}

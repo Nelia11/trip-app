@@ -101,6 +101,7 @@ const TripDashboard = () => {
           <div className={styles.group}>
             <i className='fa-solid fa-magnifying-glass'></i>
             <input
+              id='searchInput'
               type='text'
               value={searchInput}
               onChange={handleInputChange}
@@ -108,7 +109,7 @@ const TripDashboard = () => {
               className={styles.searchInput}
             />
           </div>
-          <select onChange={handleSortChange}>
+          <select onChange={handleSortChange} id='sort-start-date'>
             <option value=''>Sort by date</option>
             <option value='asc'>ASC</option>
             <option value='desc'>DESC</option>
