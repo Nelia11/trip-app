@@ -54,21 +54,3 @@
   font-weight: 600;
 }
 
-@media screen and (max-width: 748px) {
-  .weatherForecast {
-    display: flex;
-    flex-wrap: wrap;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .weatherForecast {
-    max-width: 47rem;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  .weatherForecast {
-    max-width: 22rem;
-  }
-}

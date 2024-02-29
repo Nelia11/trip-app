@@ -3,6 +3,7 @@
   justify-content: space-between;
   max-width: 200rem;
   margin: auto auto;
+  flex-wrap: wrap;
 }
 
 .leftSide {
@@ -34,6 +35,10 @@
 
 .horyzontalScroll > * {
   margin: 0 3rem 1rem 0;
+}
+
+.horyzontalScroll:first-child {
+  margin-left: 0;
 }
 
 .horyzontalScroll > :last-child {
