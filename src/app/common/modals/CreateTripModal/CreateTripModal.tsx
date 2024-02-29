@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import styles from './CreateTripModal.module.css';
-import { trips } from '../../api/trips';
-import useModalStore from '../../../store/Modal.store';
-import useCreateTripStore from '../../../store/CreateTrip.store';
-import { addDays } from '../../../helpers/addDays';
-import { splitISOStringDate } from '../../../helpers/splitISOStringDate';
+import { trips } from '../../../api/trips';
+import useModalStore from '../../../../store/Modal.store';
+import useCreateTripStore from '../../../../store/CreateTrip.store';
+import { addDays } from '../../../../helpers/addDays';
+import { splitISOStringDate } from '../../../../helpers/splitISOStringDate';
 
 const CreateTripModal = () => {
   const [inputTypeStartDate, setInputTypeStartDate] = useState('text');
