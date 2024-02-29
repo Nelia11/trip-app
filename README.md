@@ -7,4 +7,4 @@ How to Run:
  - Navigate to the project directory.
  - Install dependencies by running `npm install`.
  - Run the app using `npm run dev`.
- - Access the app in your browser at http://localhost:5174
+ - Access the app in your browser at http://localhost:5173
